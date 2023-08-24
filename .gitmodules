@@ -1,0 +1,6 @@
+[submodule "preprocessing/RAFT"]
+	path = preprocessing/RAFT
+	url = https://github.com/princeton-vl/RAFT
+[submodule "preprocessing/dino"]
+	path = preprocessing/dino
+	url = https://github.com/facebookresearch/dino
