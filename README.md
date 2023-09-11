@@ -35,7 +35,7 @@ pip install matplotlib tensorboard scipy opencv-python tqdm tensorboardX configa
     python train.py --config configs/default.txt --data_dir {sequence_directory}
     ```
     You can view visualizations on tensorboard by running `tensorboard --logdir logs/`. 
-    By default, the script trains 100k iterations which takes 8~9h on an A100 GPU.  
+    By default, the script trains 100k iterations which takes 8~9h on an A100 GPU and 12-13h on RTX4090.
 
 If you want to skip the optimization and see what the results/formats look like, we provide the weights
 for a few sequences [here](https://drive.google.com/drive/folders/16ekLy-4LTkYAavYrWaKk2qUpJ9TyMXlO?usp=sharing).
