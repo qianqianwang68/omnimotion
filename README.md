@@ -37,6 +37,10 @@ pip install matplotlib tensorboard scipy opencv-python tqdm tensorboardX configa
     You can view visualizations on tensorboard by running `tensorboard --logdir logs/`. 
     By default, the script trains 100k iterations which takes 8~9h on an A100 GPU.  
 
+If you want to skip the optimization and see what the results/formats look like, we provide the weights
+for a few sequences [here](https://drive.google.com/drive/folders/16ekLy-4LTkYAavYrWaKk2qUpJ9TyMXlO?usp=sharing).
+You can use `viz.py` to visualize the correspondences produced by the models. Please refer to the next section for more details.
+
 ## Visualization
 The training pipeline generates visualizations (correspondences, pseudo-depth maps, etc) every certain number of steps (saved in `args.out_dir/vis`). 
 You can also visualize grid points / trails after training by running: 
@@ -50,12 +54,19 @@ will be loaded. Alternatively, you can specify `ckpt_path` to select a particula
 To generate the motion trail visualization, foreground/background segmentation mask is required. 
 For DAVIS videos one can just use the mask annotations provided by the dataset. For custom videos that don't come with
 foreground segmentation masks, you can use [remove.bg](https://www.remove.bg/) to remove the background 
-for the query frame, download the masked image and specify its path:
+for the query frame, download the masked image and set `foreground_mask_path` to its path. 
+[Here](https://omnimotion.cs.cornell.edu/dataset/mask_0.png) is an example of the masked image for the first frame
+of the `butterfly` sequence. 
 ```
 python viz.py --config configs/default.txt --data_dir {sequence_directory} --foreground_mask_path {mask_file_path}
 ```
 
-
+If you download the provided model weights for a sequence from [here](https://drive.google.com/drive/folders/16ekLy-4LTkYAavYrWaKk2qUpJ9TyMXlO?usp=sharing),
+you can visualize the correspondences by running the `viz.py` script and 
+setting `data_dir` to the unzipped directory, `ckpt_path` to the path for
+`model_100000.pth` in the directory, and optionally 
+`foreground_mask_path`as the path to `mask_0.png` 
+(only required for non-DAVIS sequences `butterfly`, `kangaroo`, and `swing_tire` if you want to visualize their motion trails).
 
 ## Troubleshooting
 
