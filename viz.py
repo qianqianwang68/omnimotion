@@ -16,6 +16,11 @@ color_map = cm.get_cmap("jet")
 
 
 def vis_trail(scene_dir, kpts_foreground, kpts_background, save_path):
+    """
+    This function calculates the median motion of the background, which is subsequently
+    subtracted from the foreground motion. This subtraction process "stabilizes" the camera and
+    improves the interpretability of the foreground motion trails.
+    """
     img_dir = os.path.join(scene_dir, "color")
     img_files = sorted(list(glob.glob(os.path.join(img_dir, "*"))))
     images = np.array([imageio.imread(img_file) for img_file in img_files])
