@@ -11,7 +11,8 @@ class CouplingLayer(nn.Module):
         super().__init__()
         self.map_st = map_st
         self.projection = projection
-        self.mask = mask
+        # self.mask = mask
+        self.register_buffer("mask", mask) ## register_buffer to save in state_dict
 
     def forward(self, F, y):
         y1 = y * self.mask
